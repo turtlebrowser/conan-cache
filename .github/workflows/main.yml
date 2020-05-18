@@ -1,0 +1,42 @@
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest] #, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+    
+    env:
+      CONAN_USER_HOME: "~/conan/"
+
+    steps:
+      - name: Cache Conan modules
+        id: cache-conan
+        uses: actions/conan-cache@v1
+        env:
+          cache-name: cache-conan-modules
+        with:
+          path: ${{ env.CONAN_USER_HOME }}
+          key: ${{ runner.os }}
+
+      - name: Did we hit the cache?
+        run: echo "cache-hit was ${{ steps.cache-conan.outputs.cache-hit }}"
+
+      - name: Get Conan
+        run: |
+          pip3 install wheel setuptools
+          pip3 install conan --upgrade
+        
+      - name: Fix Path on Ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: echo "::add-path::/home/runner/.local/bin"
+
+      - name: Put something in the .conan
+        if: ${{ steps.cache-conan.outputs.cache-hit }} == 0
+        run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+
+      - name: Clean up Conan
+        run: conan remove -f "*" --builds --src --system-reqs
