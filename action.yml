@@ -19,10 +19,10 @@ outputs:
   fallback-cache-hit:
     description: 'A boolean value to indicate a hit on an fallback key'
 runs:
-  using: 'node12'
-  main: 'dist/restore/index.js'
-  post: 'dist/save/index.js'
-  post-if: 'success()'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path }}
 branding:
   icon: 'archive'
   color: 'green'
