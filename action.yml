@@ -2,14 +2,26 @@ name: 'Cache'
 description: 'Cache .conan directories'
 author: 'TurtleBrowser'
 inputs:
-  path:
-    description: 'Path to the directory that contains .conan'
+  bot_name:
+    description: 'The name of the GitHub bot'
+    required: true
+  bot_token:
+    description: 'The personal access token of the GitHub bot'
+    required: true
+  cache_name:
+    description: 'The GitHub repo used for this cache'
     required: true
   key:
     description: 'An explicit key'
     required: true
   fallback:
     description: 'A fallback key'
+    required: false
+  path:
+    description: 'Path to the directory that contains .conan - defaults to ~/'
+    required: false
+  branch:
+    description: 'Branch on the cache repo - defaults to master'
     required: false
 outputs:
   cache-hit:
