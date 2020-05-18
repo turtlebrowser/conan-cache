@@ -35,7 +35,6 @@ echo "HOST OS $RUNNER_OS"
 #echo "::set-output name=cache-hit::$cache_hit"
 
 echo "Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
-
 echo "Using cache $INPUT_CACHE_NAME"
 
 # 0. Make sure path exists and change dir to it
@@ -59,10 +58,15 @@ if [ $(git tag -l "$INPUT_KEY") ]; then
 fi
 
 # 3. If it doesn't check if fallback exits
-echo "Trying fallback key"
+FALLBACK_KEY="host-${RUNNER_OS}-target-${RUNNER_OS}-${BRANCH}"
+echo "Trying fallback key $FALLBACK_KEY"
 
 # If it does - check out fallback and set cache_hit to 2
+if [ $(git tag -l "$FALLBACK_KEY") ]; then
+    git checkout ${FALLBACK_KEY}
+    echo "::set-output name=cache-hit::2"
+    exit 0
+fi
 
 # If it doesn't - set cache_hit to 0
-
 echo "::set-output name=cache-hit::0"
