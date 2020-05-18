@@ -23,7 +23,7 @@ This action caches a .conan directory
 Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
 
 ## Example usage
-  
+~~~~
 - name: Cache Conan modules
   id: cache-conan
   uses: actions/conan-cache@v1
@@ -33,3 +33,4 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
     path: ${{ env.CONAN_USER_HOME }}
     key: ${{ runner.os }}-builder-${{ env.cache-name }}-${{ hashFiles('conanfile.py') }}
     fallback: ${{ runner.os }}-builder-${{ env.cache-name }}-
+~~~~
