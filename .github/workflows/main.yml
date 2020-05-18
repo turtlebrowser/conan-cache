@@ -24,9 +24,6 @@ jobs:
           bot_token: SECRET
           cache_name: turtlebrowser/conan-cache-linux
           key: ${{ runner.os }}
-          fallback: ${{ runner.os }}
-          path: ~/
-          branch: master
 
       - name: Did we hit the cache?
         run: echo "cache-hit was ${{ steps.cache-conan.outputs.cache-hit }}"
