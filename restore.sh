@@ -31,39 +31,38 @@ echo "HOST OS $RUNNER_OS"
 #echo "ACTIONS_RUNTIME_TOKEN $ACTIONS_RUNTIME_TOKEN" 
 #echo "ACTIONS_CACHE_URL $ACTIONS_CACHE_URL"
 
-cache_hit=0
-echo "::set-output name=cache-hit::$cache_hit"
+#cache_hit=0
+#echo "::set-output name=cache-hit::$cache_hit"
 
 echo "Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
 
-echo "Running as $INPUT_BOT_NAME using cache $INPUT_CACHE_NAME"
+echo "Using cache $INPUT_CACHE_NAME"
 
-# Check out cache - shallow and fetch
-echo "Checking out at $CONAN_USER_HOME"
-
+# 0. Make sure path exists and change dir to it
 mkdir -p $CONAN_USER_HOME
 cd $CONAN_USER_HOME
 
+# 1. Check out cache - shallow and fetch
+echo "Checking out at $CONAN_USER_HOME"
 BRANCH=master
-
-git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} #--branch=${BRANCH}
-
-#git status
-
+git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=${BRANCH}
 # If it fails - exit 1
 
-# Check if explicit key exits
-
+# 2. Check if explicit key exits
 echo "Trying explicit key $INPUT_KEY"
 
 # If it does - check out explicit and set cache_hit to 1
+if [ $(git tag -l "$INPUT_KEY") ]; then
+    git checkout ${INPUT_KEY}
+    echo "::set-output name=cache-hit::1"
+    exit 0
+fi
 
-# If it doesn't check if fallback exits
-
+# 3. If it doesn't check if fallback exits
 echo "Trying fallback key"
 
 # If it does - check out fallback and set cache_hit to 2
 
 # If it doesn't - set cache_hit to 0
 
-echo "::set-output name=cache-hit::$cache_hit"
+echo "::set-output name=cache-hit::0"
