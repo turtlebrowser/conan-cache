@@ -16,7 +16,8 @@ echo "Running as $BOT_NAME using cache $CACHE_NAME"
 # Check out cache - shallow and fetch
 echo "Checking out at $WHERE_TO_CHECKOUT"
 
-cd $WHERE_TO_CHECKOUT
+echo "CONAN_USER_HOME is $CONAN_USER_HOME"
+#cd $WHERE_TO_CHECKOUT
 
 #git clone https://${BOT_NAME}:${BOT_TOKEN}@github.com/${CACHE_NAME}.git --branch=${BRANCH_NAME}
 
