@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Cache Conan modules
         id: cache-conan
-        uses: actions/conan-cache@v1
+        uses: ./ # Uses an action in the root directory
         env:
           cache-name: cache-conan-modules
         with:
