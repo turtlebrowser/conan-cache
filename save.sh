@@ -1,8 +1,16 @@
 #!/bin/sh -l
 
-echo "Path $1"
-echo "Explicit key $2"
-echo "Fallback key $3"
+BOT_NAME=$1
+BOT_TOKEN=$2
+CACHE_NAME=$3
+EXPLICIT_KEY=$4
+FALLBACK_KEY=$5
+WHERE_TO_CHECKOUT=$6
+BRANCH_NAME=$7
+
+echo "Checkout is at $WHERE_TO_CHECKOUT"
+echo "Explicit key $EXPLICIT_KEY"
+echo "Fallback key $FALLBACK_KEY"
 cache_hit=1
 
 # If no changes were made - exit 0
