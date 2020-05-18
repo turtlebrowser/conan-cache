@@ -20,7 +20,7 @@ jobs:
         id: cache-conan
         uses: ./ # Uses an action in the root directory
         with:
-          bot_name: turtlebrowser-bot
+          bot_name: ${{ secrets.BOT_NAME }}
           bot_token: SECRET
           cache_name: turtlebrowser/conan-cache-linux
           key: ${{ runner.os }}
