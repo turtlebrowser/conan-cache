@@ -16,13 +16,13 @@ outputs:
     description: 'Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)'
 runs:
   using: 'docker'
-  image: 'docker://alpine:3.10'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.path }}
     - ${{ inputs.key }}
     - ${{ inputs.fallback }}
-  entrypoint: '/restore.sh'
-  post-entrypoint: '/save.sh'
+  entrypoint: 'restore.sh'
+  post-entrypoint: 'save.sh'
   post-if: 'success()'
 branding:
   icon: 'archive'
