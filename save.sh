@@ -1,6 +1,7 @@
 #!/bin/sh -l
 
 cd $CONAN_USER_HOME
+git add .conan/*
 git status
 
 # If no changes were made - exit 0
