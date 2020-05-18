@@ -3,7 +3,7 @@
 echo "Path $1"
 echo "Explicit key $2"
 echo "Fallback key $3"
-cache_hit=1
+cache_hit=0
 
 # Check out cache - shallow and fetch
 
