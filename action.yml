@@ -16,7 +16,7 @@ outputs:
     description: 'Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)'
 runs:
   using: 'docker'
-  image: 'alpine:3.10'
+  image: 'docker://alpine:3.10'
   args:
     - ${{ inputs.path }}
     - ${{ inputs.key }}
