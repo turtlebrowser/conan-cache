@@ -1,5 +1,5 @@
 # Container image that runs your code
-FROM debian:9.5-slim
+FROM alpine/git
 
 #RUN apt-get install -y git
 
