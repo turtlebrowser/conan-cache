@@ -30,9 +30,13 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.path }}
+    - ${{ inputs.bot_name }}
+    - ${{ inputs.bot_token }}
+    - ${{ inputs.cache_name }}
     - ${{ inputs.key }}
     - ${{ inputs.fallback }}
+    - ${{ inputs.path }}
+    - ${{ inputs.branch }}
   entrypoint: '/restore.sh'
   post-entrypoint: '/save.sh'
   post-if: 'success()'
