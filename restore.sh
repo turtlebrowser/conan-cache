@@ -44,9 +44,9 @@ cd $CONAN_USER_HOME
 
 BRANCH=master
 
-git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=${BRANCH}
+git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} #--branch=${BRANCH}
 
-git status
+#git status
 
 # If it fails - exit 1
 
