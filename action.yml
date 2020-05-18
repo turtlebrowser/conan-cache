@@ -16,7 +16,7 @@ outputs:
     description: 'Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://debian:stetch-slim'
   args:
     - ${{ inputs.path }}
     - ${{ inputs.key }}
