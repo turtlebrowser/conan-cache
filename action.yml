@@ -1,0 +1,28 @@
+name: 'Cache'
+description: 'Cache .conan directories'
+author: 'TurtleBrowser'
+inputs:
+  path:
+    description: 'Path to the directory that contains .conan'
+    required: true
+  key:
+    description: 'An explicit key'
+    required: true
+  restore-keys:
+    description: 'A fallback key'
+    required: false
+outputs:
+  cache-hit:
+    description: 'A boolean value to indicate a hit on any key'
+  explicit-cache-hit:
+    description: 'A boolean value to indicate a hit on an explicit key'
+  fallback-cache-hit:
+    description: 'A boolean value to indicate a hit on an fallback key'
+runs:
+  using: 'node12'
+  main: 'dist/restore/index.js'
+  post: 'dist/save/index.js'
+  post-if: 'success()'
+branding:
+  icon: 'archive'
+  color: 'green'
