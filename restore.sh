@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+REPO_BRANCH=master
+
 echo "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
 echo "Using cache $INPUT_CACHE_NAME"
 
@@ -9,7 +11,7 @@ cd $CONAN_USER_HOME
 
 # 1. Check out cache
 #    If it fails - exit 1
-echo "Checking out at $CONAN_USER_HOME"
+echo "Checking out at CONAN_USER_HOME: $CONAN_USER_HOME"
 git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=master || exit 1
 
 # 2. Check if explicit key exits
@@ -23,7 +25,7 @@ fi
 
 # 3. If it doesn't check if fallback exits
 #    If it does - check out fallback and set cache_hit to 2
-FALLBACK_KEY="host-${RUNNER_OS}-target-${RUNNER_OS}-${BRANCH}"
+FALLBACK_KEY="host-${RUNNER_OS}-target-${RUNNER_OS}-${REPO_BRANCH}"
 echo "Trying fallback key $FALLBACK_KEY"
 if [ $(git tag -l "$FALLBACK_KEY") ]; then
     git checkout ${FALLBACK_KEY}
