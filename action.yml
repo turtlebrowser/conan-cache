@@ -8,21 +8,19 @@ inputs:
   key:
     description: 'An explicit key'
     required: true
-  restore-keys:
+  fallback:
     description: 'A fallback key'
     required: false
 outputs:
   cache-hit:
-    description: 'A boolean value to indicate a hit on any key'
-  explicit-cache-hit:
-    description: 'A boolean value to indicate a hit on an explicit key'
-  fallback-cache-hit:
-    description: 'A boolean value to indicate a hit on an fallback key'
+    description: 'Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.path }}
+    - ${{ inputs.key }}
+    - ${{ inputs.fallback }}
 branding:
   icon: 'archive'
   color: 'green'
