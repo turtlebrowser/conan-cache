@@ -34,6 +34,8 @@ echo "HOST OS $RUNNER_OS"
 cache_hit=0
 echo "::set-output name=cache-hit::$cache_hit"
 
+echo "Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
+
 echo "Running as $INPUT_BOT_NAME using cache $INPUT_CACHE_NAME"
 
 # Check out cache - shallow and fetch
