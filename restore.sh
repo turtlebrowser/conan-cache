@@ -39,9 +39,15 @@ echo "Running as $INPUT_BOT_NAME using cache $INPUT_CACHE_NAME"
 # Check out cache - shallow and fetch
 echo "Checking out at $CONAN_USER_HOME"
 
-#cd $CONAN_USER_HOME
+mkdir -p $CONAN_USER_HOME
 
-#git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git --branch=${INPUT_BRANCH}
+BRANCH=master
+
+git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=${BRANCH}
+
+cd $CONAN_USER_HOME
+
+ls
 
 # If it fails - exit 1
 
