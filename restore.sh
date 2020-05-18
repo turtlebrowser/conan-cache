@@ -31,8 +31,6 @@ echo "HOST OS $RUNNER_OS"
 #echo "ACTIONS_RUNTIME_TOKEN $ACTIONS_RUNTIME_TOKEN" 
 #echo "ACTIONS_CACHE_URL $ACTIONS_CACHE_URL"
 
-BRANCH_NAME=$7
-
 cache_hit=0
 echo "::set-output name=cache-hit::$cache_hit"
 
