@@ -5,9 +5,6 @@ echo "INPUT_BOT_NAME $INPUT_BOT_NAME"
 echo "INPUT_BOT_TOKEN $INPUT_BOT_TOKEN"
 echo "INPUT_CACHE_NAME $INPUT_CACHE_NAME"
 echo "INPUT_KEY $INPUT_KEY"
-echo "INPUT_FALLBACK $INPUT_FALLBACK"
-echo "INPUT_PATH $INPUT_PATH"
-echo "INPUT_BRANCH $INPUT_BRANCH"
 echo "HOME $HOME" 
 echo "GITHUB_JOB $GITHUB_JOB"
 echo "GITHUB_REF $GITHUB_REF"
@@ -42,12 +39,11 @@ echo "::set-output name=cache-hit::$cache_hit"
 echo "Running as $INPUT_BOT_NAME using cache $INPUT_CACHE_NAME"
 
 # Check out cache - shallow and fetch
-echo "Checking out at $INPUT_PATH"
+echo "Checking out at $CONAN_USER_HOME"
 
-echo "CONAN_USER_HOME is $CONAN_USER_HOME"
-#cd $INPUT_PATH
+#cd $CONAN_USER_HOME
 
-#git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git --branch=${BRANCH_NAME}
+#git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git --branch=${INPUT_BRANCH}
 
 # If it fails - exit 1
 
@@ -59,7 +55,7 @@ echo "Trying explicit key $INPUT_KEY"
 
 # If it doesn't check if fallback exits
 
-echo "Trying fallback key $INPUT_FALLBACK"
+echo "Trying fallback key"
 
 # If it does - check out fallback and set cache_hit to 2
 
