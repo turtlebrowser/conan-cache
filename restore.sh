@@ -1,8 +1,5 @@
 #!/bin/sh -l
 
-cache_hit=0
-echo "::set-output name=cache-hit::$cache_hit"
-
 BOT_NAME=$1
 BOT_TOKEN=$2
 CACHE_NAME=$3
@@ -10,6 +7,9 @@ EXPLICIT_KEY=$4
 FALLBACK_KEY=$5
 WHERE_TO_CHECKOUT=$6
 BRANCH_NAME=$7
+
+cache_hit=0
+echo "::set-output name=cache-hit::$cache_hit"
 
 echo "Running as $BOT_NAME using cache $CACHE_NAME"
 
