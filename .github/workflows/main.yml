@@ -21,7 +21,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         with:
           bot_name: turtlebrowser-bot
-          bot_token: ""
+          bot_token: SECRET
           cache_name: turtlebrowser/conan-cache-linux
           key: ${{ runner.os }}
           fallback: ${{ runner.os }}
