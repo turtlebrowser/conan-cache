@@ -19,11 +19,14 @@ jobs:
       - name: Cache Conan modules
         id: cache-conan
         uses: ./ # Uses an action in the root directory
-        env:
-          cache-name: cache-conan-modules
         with:
-          path: ${{ env.CONAN_USER_HOME }}
+          bot_name: turtlebrowser-bot
+          bot_token: ""
+          cache_name: turtlebrowser/conan-cache-linux
           key: ${{ runner.os }}
+          fallback: ${{ runner.os }}
+          path: ~/
+          branch: master
 
       - name: Did we hit the cache?
         run: echo "cache-hit was ${{ steps.cache-conan.outputs.cache-hit }}"
