@@ -24,15 +24,16 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
 
 ## Example usage
 ~~~~
-- name: Cache Conan modules
-  id: cache-conan
-  uses: actions/conan-cache@v1
-  env:
-    cache-name: cache-conan-modules
-  with:
-    path: ${{ env.CONAN_USER_HOME }}
-    key: ${{ runner.os }}-${{ hashFiles('conanfile.py') }}
-    fallback: ${{ runner.os }}
+    - name: Cache Conan modules
+      if: matrix.os == 'ubuntu-latest'
+      id: cache-conan
+      uses: turtlebrowser/conan-cache@master
+      env:
+        cache-name: turtlebrowser/conan-cache-linux
+      with:
+        path: ${{ env.CONAN_USER_HOME }}
+        key: ${{ runner.os }}-${{ hashFiles('conanfile.py') }}
+        fallback: ${{ runner.os }}
 ~~~~
 
 ## Setup
