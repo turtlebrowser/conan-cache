@@ -14,15 +14,6 @@ inputs:
   key:
     description: 'An explicit key'
     required: true
-  fallback:
-    description: 'A fallback key'
-    required: false
-  path:
-    description: 'Path to the directory that contains .conan - defaults to ~/'
-    required: false
-  branch:
-    description: 'Branch on the cache repo - defaults to master'
-    required: false
 outputs:
   cache-hit:
     description: 'Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)'
@@ -34,9 +25,6 @@ runs:
     - ${{ inputs.bot_token }}
     - ${{ inputs.cache_name }}
     - ${{ inputs.key }}
-    - ${{ inputs.fallback }}
-    - ${{ inputs.path }}
-    - ${{ inputs.branch }}
   entrypoint: '/restore.sh'
   post-entrypoint: '/save.sh'
   post-if: 'success()'
