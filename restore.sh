@@ -30,7 +30,7 @@ echo "Trying explicit key $EXPLICIT_KEY"
 
 # If it doesn't check if fallback exits
 
-echo "Trying explicit key $FALLBACK_KEY"
+echo "Trying fallback key $FALLBACK_KEY"
 
 # If it does - check out fallback and set cache_hit to 2
 
