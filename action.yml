@@ -21,8 +21,8 @@ runs:
     - ${{ inputs.path }}
     - ${{ inputs.key }}
     - ${{ inputs.fallback }}
-  entrypoint: 'restore.sh'
-  post-entrypoint: 'save.sh'
+  entrypoint: '/restore.sh'
+  post-entrypoint: '/save.sh'
   post-if: 'success()'
 branding:
   icon: 'archive'
