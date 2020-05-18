@@ -31,6 +31,6 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
     cache-name: cache-conan-modules
   with:
     path: ${{ env.CONAN_USER_HOME }}
-    key: ${{ runner.os }}-builder-${{ env.cache-name }}-${{ hashFiles('conanfile.py') }}
-    fallback: ${{ runner.os }}-builder-${{ env.cache-name }}-
+    key: ${{ runner.os }}-${{ hashFiles('conanfile.py') }}
+    fallback: ${{ runner.os }}
 ~~~~
