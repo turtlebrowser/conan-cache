@@ -1,11 +1,16 @@
 #!/bin/sh -l
 
 cd $CONAN_USER_HOME
-pwd
-ls -a
 
-#git add .conan/*
-git status
+#FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
+echo "Check if on branch"
+if [ $(git symbolic-ref --short -q HEAD) ]; then
+    echo "Currently on fallback key"
+    git status
+else
+    echo "Got hit on explicit key"
+    git status
+fi
 
 # If no changes were made - exit 0
 
