@@ -30,7 +30,9 @@ jobs:
         run: sudo chown -R $(id -u):$(id -g) ${{ env.CONAN_USER_HOME }}
 
       - name: Did we hit the cache?
-        run: echo "cache-hit was ${{ steps.cache-conan.outputs.cache-hit }}"
+        run: |
+          echo "cache-hit was ${{ steps.cache-conan.outputs.cache-hit }}"
+          echo "cache-hit was ${{ env.cache-hit }}"
 
       - name: Get Conan
         run: |
