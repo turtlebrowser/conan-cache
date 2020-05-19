@@ -35,7 +35,6 @@ if [ "$fallback_exists" ]; then
     echo "Check out fallback key $FALLBACK_KEY"
     git checkout ${FALLBACK_KEY}
     echo "::set-output name=cache-hit::2"
-    exit 0
 else
     # If it doesn't - create the branch and set cache_hit to 0
     echo "Creating fallback key $FALLBACK_KEY"
