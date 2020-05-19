@@ -34,6 +34,9 @@ if [ $(git tag -l "$FALLBACK_KEY") ]; then
     git checkout ${FALLBACK_KEY}
     echo "::set-output name=cache-hit::2"
     exit 0
+else
+    git checkout -b ${FALLBACK_KEY}
+    git push -u origin ${FALLBACK_KEY}
 fi
 
 # If it doesn't - set cache_hit to 0
