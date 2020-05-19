@@ -14,6 +14,8 @@ cd $CONAN_USER_HOME
 echo "Checking out at CONAN_USER_HOME: $CONAN_USER_HOME"
 git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=master || exit 1
 
+touch test.txt
+
 # 2. Check if explicit key exits
 #    If it does - check out explicit and set cache_hit to 1
 echo "Trying explicit key $INPUT_KEY"
