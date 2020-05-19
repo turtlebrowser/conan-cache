@@ -23,7 +23,7 @@ jobs:
           bot_name: ${{ secrets.BOT_NAME }}
           bot_token: ${{ secrets.BOT_TOKEN }}
           cache_name: turtlebrowser/conan-cache-linux
-          key: test2
+          key: test3
           target_os: Test
 
       - name: Set CONAN_USER_HOME ownership to current user
