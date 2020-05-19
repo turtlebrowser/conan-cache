@@ -7,6 +7,10 @@ echo "Check if on branch"
 if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Currently on fallback key"
     git status
+    git add *
+    git commit -m "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
+    git push
+    #git push origin --delete <tagname>
 else
     echo "Got hit on explicit key"
     git status
