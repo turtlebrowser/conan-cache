@@ -42,7 +42,7 @@ jobs:
         run: echo "::add-path::/home/runner/.local/bin"
 
       - name: Put something in the .conan
-        if: ${{ env.cache-hit }} == "0"
+        if: ${{ env.cache-hit == 0 }}
         run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 
       - name: Print branch
