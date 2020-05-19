@@ -39,7 +39,7 @@ jobs:
 
       - name: Put something in the .conan
         if: ${{ steps.cache-conan.outputs.cache-hit }} == 0
-        run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+        run: sudo conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 
       - name: Clean up Conan
         run: conan remove -f "*" --builds --src --system-reqs
