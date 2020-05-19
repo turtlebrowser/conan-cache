@@ -32,14 +32,17 @@ jobs:
         run: |
           pip3 install wheel setuptools
           pip3 install conan --upgrade
-        
+
+      - name: Set CONAN_USER_HOME ownership to current user
+        run: sudo chown -R $(id -u):$(id -g) ${{ env.CONAN_USER_HOME }}
+      
       - name: Fix Path on Ubuntu
         if: matrix.os == 'ubuntu-latest'
         run: echo "::add-path::/home/runner/.local/bin"
 
       - name: Put something in the .conan
         if: ${{ steps.cache-conan.outputs.cache-hit }} == 0
-        run: sudo conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+        run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 
       - name: Clean up Conan
         run: conan remove -f "*" --builds --src --system-reqs
