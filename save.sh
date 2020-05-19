@@ -5,20 +5,20 @@ cd $CONAN_USER_HOME
 #FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
 echo "Check if on branch"
 if [ $(git symbolic-ref --short -q HEAD) ]; then
-    echo "Currently on fallback key"
+    echo "Conan Cache: Currently on fallback key"
     git status
-    echo "Configure git"
+    echo "Conan Cache: Configure git"
     git config user.email "you@example.com"
     git config user.name "${INPUT_BOT_NAME}"
-    echo "Add everything"
+    echo "Conan Cache: Add everything"
     git add *
-    echo "Commit locally"
+    echo "Conan Cache: Commit locally"
     git commit -m "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
-    echo "Push to GitHub"
+    echo "Conan Cache: Push to GitHub"
     git push
-    echo "Tag with explicit key : $INPUT_KEY"
+    echo "Conan Cache: Tag with explicit key : $INPUT_KEY"
     git tag $INPUT_KEY
-    echo "Push explicit key"
+    echo "Conan Cache: Push explicit key"
     git push origin $INPUT_KEY
 else
     echo "Got hit on explicit key : $INPUT_KEY"
