@@ -1,6 +1,8 @@
 #!/bin/sh -l
 
 cd $CONAN_USER_HOME
+pwd
+ls -a
 
 #git add .conan/*
 git status
