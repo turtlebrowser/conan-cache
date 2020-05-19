@@ -7,10 +7,14 @@ echo "Check if on branch"
 if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Currently on fallback key"
     git status
+    echo "Configure git"
     git config user.email "you@example.com"
     git config user.name "${INPUT_BOT_NAME}"
+    echo "Add everything"
     git add *
+    echo "Commit locally"
     git commit -m "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
+    echo "Push to GitHub"
     git push
     # git push origin --delete $INPUT_KEY
     # git tag $INPUT_KEY
