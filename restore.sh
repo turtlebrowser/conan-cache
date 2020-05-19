@@ -20,7 +20,7 @@ touch .conan/test.txt
 # 2. Check if explicit key exits
 #    If it does - check out explicit and set cache_hit to 1
 echo "Trying explicit key $INPUT_KEY"
-if [ $(git tag -l "$INPUT_KEY") ]; then
+if [ $(git tag --list "$INPUT_KEY") ]; then
     git checkout ${INPUT_KEY}
     echo "::set-output name=cache-hit::1"
     exit 0
@@ -30,7 +30,7 @@ fi
 #    If it does - check out fallback and set cache_hit to 2
 FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
 echo "Trying fallback key $FALLBACK_KEY"
-if [ $(git tag -l "$FALLBACK_KEY") ]; then
+if [ $(git branch --list "$FALLBACK_KEY") ]; then
     git checkout ${FALLBACK_KEY}
     echo "::set-output name=cache-hit::2"
     exit 0
