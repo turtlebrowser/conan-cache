@@ -44,5 +44,11 @@ jobs:
         if: ${{ steps.cache-conan.outputs.cache-hit }} == 0
         run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 
+      - name: Print branch
+        run: |
+          echo "${{ github.ref }}"
+          echo "${{ github.head_ref }}"
+          echo "${{ github.base_ref }}"
+
       - name: Clean up Conan
         run: conan remove -f "*" --builds --src --system-reqs
