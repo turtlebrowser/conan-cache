@@ -24,6 +24,7 @@ jobs:
           bot_token: ${{ secrets.BOT_TOKEN }}
           cache_name: turtlebrowser/conan-cache-linux
           key: test
+          target_os: Test
 
       - name: Set CONAN_USER_HOME ownership to current user
         run: sudo chown -R $(id -u):$(id -g) ${{ env.CONAN_USER_HOME }}
