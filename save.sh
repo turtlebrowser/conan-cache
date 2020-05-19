@@ -16,9 +16,10 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     git commit -m "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
     echo "Push to GitHub"
     git push
-    # git push origin --delete $INPUT_KEY
-    # git tag $INPUT_KEY
-    # git push origin $INPUT_KEY
+    echo "Tag with explicit key : $INPUT_KEY"
+    git tag $INPUT_KEY
+    echo "Push explicit key"
+    git push origin $INPUT_KEY
 else
     echo "Got hit on explicit key : $INPUT_KEY"
     git status
