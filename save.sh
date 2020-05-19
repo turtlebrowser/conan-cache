@@ -11,7 +11,8 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     git config user.email "you@example.com"
     git config user.name "${INPUT_BOT_NAME}"
     echo "Conan Cache: Add everything"
-    git add --all -- ':!.conan/data/qt/*'
+    git add *
+    #git add --all -- ':!.conan/data/qt/*'
     echo "Conan Cache: Commit locally"
     git commit -m "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
     echo "Conan Cache: Push to GitHub"
