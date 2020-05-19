@@ -1,5 +1,6 @@
 #!/bin/sh -l
 
+INPUT_TARGET_OS=${INPUT_TARGET_OS:-$RUNNER_OS}
 REPO_BRANCH=master
 
 echo "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
@@ -27,7 +28,7 @@ fi
 
 # 3. If it doesn't check if fallback exits
 #    If it does - check out fallback and set cache_hit to 2
-FALLBACK_KEY="host-${RUNNER_OS}-target-${RUNNER_OS}-${REPO_BRANCH}"
+FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
 echo "Trying fallback key $FALLBACK_KEY"
 if [ $(git tag -l "$FALLBACK_KEY") ]; then
     git checkout ${FALLBACK_KEY}
