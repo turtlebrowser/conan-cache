@@ -30,9 +30,7 @@ jobs:
         run: sudo chown -R $(id -u):$(id -g) ${{ env.CONAN_USER_HOME }}
 
       - name: Did we hit the cache?
-        run: |
-          echo "cache-hit was ${{ steps.cache-conan.outputs.cache-hit }}"
-          echo "cache-hit was ${{ env.cache-hit }}"
+        run: echo "cache-hit was ${{ env.cache-hit }}"
 
       - name: Get Conan
         run: |
@@ -44,7 +42,7 @@ jobs:
         run: echo "::add-path::/home/runner/.local/bin"
 
       - name: Put something in the .conan
-        if: ${{ steps.cache-conan.outputs.cache-hit }} == 0
+        if: ${{ env.cache-hit }} == 0
         run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 
       - name: Print branch
