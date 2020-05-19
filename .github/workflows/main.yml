@@ -25,6 +25,9 @@ jobs:
           cache_name: turtlebrowser/conan-cache-linux
           key: test
 
+      - name: Set CONAN_USER_HOME ownership to current user
+        run: sudo chown -R $(id -u):$(id -g) ${{ env.CONAN_USER_HOME }}
+
       - name: Did we hit the cache?
         run: echo "cache-hit was ${{ steps.cache-conan.outputs.cache-hit }}"
 
@@ -32,9 +35,6 @@ jobs:
         run: |
           pip3 install wheel setuptools
           pip3 install conan --upgrade
-
-      - name: Set CONAN_USER_HOME ownership to current user
-        run: sudo chown -R $(id -u):$(id -g) ${{ env.CONAN_USER_HOME }}
       
       - name: Fix Path on Ubuntu
         if: matrix.os == 'ubuntu-latest'
