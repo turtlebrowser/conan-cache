@@ -2,47 +2,41 @@
 
 INPUT_TARGET_OS=${INPUT_TARGET_OS:-$RUNNER_OS}
 REPO_BRANCH=master
-CACHE_HIT=0
 
 echo "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
 echo "Using cache $INPUT_CACHE_NAME"
 
-# 0. Make sure path exists and change dir to it
+# Make sure path exists and change dir to it
 mkdir -p $CONAN_USER_HOME
 cd $CONAN_USER_HOME
 
-# 1. Check out cache
-#    If it fails - exit 1
+# Check out cache
 echo "Checking out at CONAN_USER_HOME: $CONAN_USER_HOME"
 git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=master || exit 1
 
-# 2. Check if explicit key exits
-#    If it does - check out explicit and set cache_hit to 1
+# Check if explicit key exits
 echo "Trying explicit key $INPUT_KEY"
 if [ $(git tag --list "$INPUT_KEY") ]; then
+    # If it does - check out explicit and set cache_hit to 1
     git checkout ${INPUT_KEY}
-    CACHE_HIT=1
+    echo "::set-env name=cache-hit::1"
 else
-# 3. If it doesn't check if fallback exits
-#    If it does - check out fallback and set cache_hit to 2
-FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
-echo "Trying fallback key $FALLBACK_KEY"
+    # If it doesn't check if fallback exits
+    FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
+    echo "Trying fallback key $FALLBACK_KEY"
 
-fallback_exists="$(git ls-remote origin $FALLBACK_KEY 2>/dev/null)"
+    fallback_exists="$(git ls-remote origin $FALLBACK_KEY 2>/dev/null)"
 
-if [ "$fallback_exists" ]; then
-    echo "Check out fallback key $FALLBACK_KEY"
-    git checkout ${FALLBACK_KEY}
-    CACHE_HIT=2
-else
-    # If it doesn't - create the branch and set cache_hit to 0
-    echo "Creating fallback key $FALLBACK_KEY"
-    git checkout -b ${FALLBACK_KEY}
-    git push -u origin ${FALLBACK_KEY}
-    CACHE_HIT=0
+    if [ "$fallback_exists" ]; then
+        # If it does - check out fallback and set cache_hit to 2
+        echo "Check out fallback key $FALLBACK_KEY"
+        git checkout ${FALLBACK_KEY}
+        echo "::set-env name=cache-hit::2"
+    else
+        # If it doesn't - create the branch and set cache_hit to 0
+        echo "Creating fallback key $FALLBACK_KEY"
+        git checkout -b ${FALLBACK_KEY}
+        git push -u origin ${FALLBACK_KEY}
+        echo "::set-env name=cache-hit::0"
+    fi
 fi
-
-fi
-
-
-echo "::set-output name=cache-hit::$CACHE_HIT"
