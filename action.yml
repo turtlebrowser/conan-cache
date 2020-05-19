@@ -14,6 +14,9 @@ inputs:
   key:
     description: 'An explicit key'
     required: true
+  target_os:
+    description: 'Target OS if different from host OS'
+    required: false
 outputs:
   cache-hit:
     description: 'Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)'
@@ -25,6 +28,7 @@ runs:
     - ${{ inputs.bot_token }}
     - ${{ inputs.cache_name }}
     - ${{ inputs.key }}
+    - ${{ inputs.target_os }}
   entrypoint: '/restore.sh'
   post-entrypoint: '/save.sh'
   post-if: 'success()'
