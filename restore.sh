@@ -28,7 +28,7 @@ fi
 #    If it does - check out fallback and set cache_hit to 2
 FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
 echo "Trying fallback key $FALLBACK_KEY"
-if [ $(git branch --list "$FALLBACK_KEY") ]; then
+if [ `git ls-remote origin $FALLBACK_KEY` ]; then
     git checkout ${FALLBACK_KEY}
     echo "::set-output name=cache-hit::2"
     exit 0
