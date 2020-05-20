@@ -15,6 +15,8 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Find all files bigger than 100MB"
     find . -type f -size +100000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
     
+    git lfs track 'libQt5WebEngineCore.so.*'
+    
     echo "Conan Cache: Add everything"
     git add -A
     #git add --all -- ':!.conan/data/qt/*'
