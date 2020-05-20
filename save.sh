@@ -23,6 +23,8 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: LFS Migrate Import Everything"
     git lfs migrate import --everything
     
+    git pull --rebase
+    
     echo "Conan Cache: Push to GitHub"
     git push
     
