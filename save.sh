@@ -12,7 +12,8 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     git config user.email "you@example.com"
     git config user.name "${INPUT_BOT_NAME}"
     
-    git pull
+    echo "Conan Cache: Find all files bigger than 100MB"
+    find . -type f -size +100000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
     
     echo "Conan Cache: Add everything"
     git add -A
