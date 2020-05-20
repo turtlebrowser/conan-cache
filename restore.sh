@@ -31,6 +31,7 @@ else
         # If it does - check out fallback and set cache_hit to 2
         echo "Check out fallback key $FALLBACK_KEY"
         git checkout ${FALLBACK_KEY}
+        git pull
         echo "::set-env name=cache-hit::2"
     else
         # If it doesn't - create the branch and set cache_hit to 0
