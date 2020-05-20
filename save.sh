@@ -15,35 +15,24 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Find all files bigger than 100MB"
     find .conan/ -type f -size +100000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
     
+    echo "Conan Cache: HARDCODED LFS tracking of libQt5WebEngineCore.so.*"
     git lfs track 'libQt5WebEngineCore.so.*'
     
     echo "Conan Cache: Add everything"
     git add -A
-    #git add --all -- ':!.conan/data/qt/*'
+    
     echo "Conan Cache: Commit locally"
     git commit -m "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
-    
-    #echo "Conan Cache: LFS Migrate Info"
-    #git lfs migrate info
-    #echo "Conan Cache: LFS Migrate Import Everything"
-    #git lfs migrate import --everything
-    
-    git pull --rebase
-    
+        
     echo "Conan Cache: Push to GitHub"
     git push
     
-    #echo "Conan Cache: Tag with explicit key : $INPUT_KEY"
-    #git tag $INPUT_KEY
-    #echo "Conan Cache: Push explicit key"
-    #git push origin $INPUT_KEY
+    echo "Conan Cache: Tag with explicit key : $INPUT_KEY"
+    git tag $INPUT_KEY
+    
+    echo "Conan Cache: Push explicit key"
+    git push origin $INPUT_KEY
 else
     echo "Got hit on explicit key : $INPUT_KEY"
     git status
 fi
-
-# If no changes were made - exit 0
-
-# if cache_hit was 1 (explicit) - should you update?
-
-# If cache_hit was 0 (miss) or 2 (fallback) - make a new explicit
