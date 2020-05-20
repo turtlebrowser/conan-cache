@@ -10,8 +10,9 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Configure git"
     git config user.email "you@example.com"
     git config user.name "${INPUT_BOT_NAME}"
-    echo "Conan Cache: Add everything"
+    echo "Conan Cache: LFS Migrate Info"
     git lfs migrate info
+    echo "Conan Cache: Add everything"
     git add -A
     #git add --all -- ':!.conan/data/qt/*'
     echo "Conan Cache: Commit locally"
