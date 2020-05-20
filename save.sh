@@ -7,20 +7,25 @@ echo "Check if on branch"
 if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Currently on fallback key"
     git status
+    
     echo "Conan Cache: Configure git"
     git config user.email "you@example.com"
     git config user.name "${INPUT_BOT_NAME}"
-    echo "Conan Cache: LFS Migrate Info"
-    git lfs migrate info
-    echo "Conan Cache: LFS Migrate Import Everything"
-    git lfs migrate import --everything
+    
     echo "Conan Cache: Add everything"
     git add -A
     #git add --all -- ':!.conan/data/qt/*'
     echo "Conan Cache: Commit locally"
     git commit -m "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
+    
+    echo "Conan Cache: LFS Migrate Info"
+    git lfs migrate info
+    echo "Conan Cache: LFS Migrate Import Everything"
+    git lfs migrate import --everything
+    
     echo "Conan Cache: Push to GitHub"
     git push
+    
     #echo "Conan Cache: Tag with explicit key : $INPUT_KEY"
     #git tag $INPUT_KEY
     #echo "Conan Cache: Push explicit key"
