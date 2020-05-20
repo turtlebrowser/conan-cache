@@ -20,10 +20,10 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Commit locally"
     git commit -m "$GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
     
-    echo "Conan Cache: LFS Migrate Info"
-    git lfs migrate info
-    echo "Conan Cache: LFS Migrate Import Everything"
-    git lfs migrate import --everything
+    #echo "Conan Cache: LFS Migrate Info"
+    #git lfs migrate info
+    #echo "Conan Cache: LFS Migrate Import Everything"
+    #git lfs migrate import --everything
     
     git pull --rebase
     
