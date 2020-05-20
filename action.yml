@@ -31,7 +31,7 @@ runs:
     - ${{ inputs.target_os }}
   entrypoint: '/restore.sh'
   post-entrypoint: '/save.sh'
-#  post-if: 'success()'
+  post-if: 'success()'
 branding:
   icon: 'archive'
   color: 'green'
