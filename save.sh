@@ -12,6 +12,8 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     git config user.name "${INPUT_BOT_NAME}"
     echo "Conan Cache: LFS Migrate Info"
     git lfs migrate info
+    echo "Conan Cache: LFS Migrate Import Everything"
+    git lfs migrate import --everything
     echo "Conan Cache: Add everything"
     git add -A
     #git add --all -- ':!.conan/data/qt/*'
