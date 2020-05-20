@@ -1,6 +1,6 @@
 # conan-cache action
 
-This action caches a .conan directory
+LINUX SPECIFIC ACTION: This action caches a .conan directory
 
 ## Inputs
 
