@@ -1,23 +1,25 @@
-# conan-cache action
+# Conan Cache GitHub Action
 
 ## Inputs
 
-### `path`
+### `bot_name`
+**Required** The name of the GitHub bot
 
-**Required** The path to the directory containing .conan.
+### `bot_token`
+**Required** The personal access token of the GitHub bot
+
+### `cache_name`
+**Required** The GitHub repo used for this cache
 
 ### `key`
+**Required** An explicit key to store this cache under
 
-**Required** The perferred key to look up, and the key to store
-
-### `fallback`
-
-**Optional** If no hit on key, fallback key to try
+### `target_os`
+**Optional** Target OS if different from host OS
 
 ## Outputs
 
 ### `cache-hit`
-
 Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
 
 ## Example usage
@@ -55,7 +57,7 @@ Add the bot account as collaborator on the repo
 
 ## Notes
 
-Might be needed to pull
+Might be needed to pull locally
 ~~~
 git lfs pull
 ~~~
