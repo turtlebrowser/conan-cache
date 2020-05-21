@@ -28,11 +28,11 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Push to GitHub"
     git push
     
-    echo "Conan Cache: Tag with explicit key : $INPUT_KEY"
-    git tag $INPUT_KEY
+    #echo "Conan Cache: Tag with explicit key : $INPUT_KEY"
+    #git tag $INPUT_KEY
     
-    echo "Conan Cache: Push explicit key"
-    git push origin $INPUT_KEY
+    #echo "Conan Cache: Push explicit key"
+    #git push origin $INPUT_KEY
 else
     echo "Got hit on explicit key : $INPUT_KEY"
     git status
