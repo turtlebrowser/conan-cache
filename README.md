@@ -1,7 +1,5 @@
 # conan-cache action
 
-LINUX SPECIFIC ACTION: This action caches a .conan directory
-
 ## Inputs
 
 ### `path`
@@ -25,15 +23,14 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
 ## Example usage
 ~~~~
     - name: Cache Conan modules
-      if: matrix.os == 'ubuntu-latest'
       id: cache-conan
       uses: turtlebrowser/conan-cache@master
-      env:
-        cache-name: turtlebrowser/conan-cache-linux
       with:
-        path: ${{ env.CONAN_USER_HOME }}
-        key: ${{ runner.os }}-${{ hashFiles('conanfile.py') }}
-        fallback: ${{ runner.os }}
+          bot_name: ${{ secrets.BOT_NAME }}
+          bot_token: ${{ secrets.BOT_TOKEN }}
+          cache_name: ${{ env.CACHE_GITHUB }}/${{ env.CACHE_GITHUB_REPO }}
+          key: host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
+          target_os: ${{ runner.os }}
 ~~~~
 
 ## Setup
