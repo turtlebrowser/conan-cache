@@ -55,9 +55,13 @@ touch .gitattributes && git add .gitattributes && git commit -m "Add .gitattribu
 
 Add the bot account as collaborator on the repo
 
-## Notes
+## How to use locally
 
 Might be needed to pull locally
 ~~~
+git clone git@github.com:turtlebrowser/conan-cache-turtlebrowser.git
+cd conan-cache-turtlebrowser
+git checkout host-Linux-target-Linux-master
 git lfs pull
+export CONAN_USER_HOME=`pwd`
 ~~~
