@@ -21,16 +21,9 @@ outputs:
   cache-hit:
     description: 'Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.bot_name }}
-    - ${{ inputs.bot_token }}
-    - ${{ inputs.cache_name }}
-    - ${{ inputs.key }}
-    - ${{ inputs.target_os }}
-  entrypoint: '/restore.sh'
-  post-entrypoint: '/save.sh'
+  using: 'node12'
+  main: 'restore.js'
+  post: 'save.js'
   post-if: 'success()'
 branding:
   icon: 'archive'
