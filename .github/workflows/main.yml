@@ -5,7 +5,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
     
@@ -23,11 +23,11 @@ jobs:
           bot_name: ${{ secrets.BOT_NAME }}
           bot_token: ${{ secrets.BOT_TOKEN }}
           cache_name: turtlebrowser/conan-cache
-          key: test
+          key: test_${{ runner.os }}
           target_os: Test
 
-      - name: Set CONAN_USER_HOME ownership to current user
-        run: sudo chown -R $(id -u):$(id -g) ${{ env.CONAN_USER_HOME }}
+#      - name: Set CONAN_USER_HOME ownership to current user
+#        run: sudo chown -R $(id -u):$(id -g) ${{ env.CONAN_USER_HOME }}
 
       - name: Did we hit the cache?
         run: echo "cache-hit was ${{ env.cache-hit }}"
