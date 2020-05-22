@@ -35,6 +35,7 @@ else
         echo "Conan Cache: Check out fallback key $FALLBACK_KEY"
         git checkout ${FALLBACK_KEY}
         git pull
+        git lfs pull
         echo "::set-env name=cache-hit::2"
     else
         # If it doesn't - create the branch and set cache_hit to 0
