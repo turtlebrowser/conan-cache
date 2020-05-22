@@ -24,7 +24,7 @@ runs:
   using: 'node12'
   main: 'restore.js'
   post: 'save.js'
-  #post-if: 'success()'
+  post-if: 'success()'
 branding:
   icon: 'archive'
   color: 'green'
