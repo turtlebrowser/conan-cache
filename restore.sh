@@ -22,6 +22,7 @@ echo "Conan Cache: Trying explicit key $INPUT_KEY"
 if [ $(git tag --list "$INPUT_KEY") ]; then
     # If it does - check out explicit and set cache_hit to 1
     git checkout ${INPUT_KEY}
+    find .conan/ -name .conan_link -exec sed -i s#CONAN_USER_HOME_SHORT#${CONAN_USER_HOME_SHORT}/#g {} +
     echo "::set-env name=cache-hit::1"
 else
     # If it doesn't check if fallback exits
@@ -36,6 +37,7 @@ else
         git checkout ${FALLBACK_KEY}
         git pull
         git lfs pull
+        find .conan/ -name .conan_link -exec sed -i s#CONAN_USER_HOME_SHORT#${CONAN_USER_HOME_SHORT}/#g {} +
         echo "::set-env name=cache-hit::2"
     else
         # If it doesn't - create the branch and set cache_hit to 0
