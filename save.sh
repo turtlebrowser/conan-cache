@@ -6,6 +6,10 @@ cd $CONAN_USER_HOME
 echo "Check if on branch"
 if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Currently on fallback key"
+    
+    echo "Conan Cache: replace ${CONAN_USER_HOME_SHORT} with CONAN_USER_HOME_SHORT"
+    find .conan/ -name .conan_link -exec sed -i s#${CONAN_USER_HOME_SHORT}#$CONAN_USER_HOME_SHORT/#g {} +
+    
     git status
     
     echo "Conan Cache: Configure git"
