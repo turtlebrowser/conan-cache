@@ -8,8 +8,7 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Currently on fallback key"
     
     echo "Conan Cache: replace ${CONAN_USER_HOME_SHORT} with CONAN_USER_HOME_SHORT"
-    find .conan/ -name .conan_link -exec perl -pi -e 's|\QD:\a\turtlebrowser\turtlebrowser/release/short/\E|CONAN_USER_HOME_SHORT/|g' {} +
-    #find .conan/ -name .conan_link -exec perl -pi -e 's=$ENV{CONAN_USER_HOME_SHORT}=CONAN_USER_HOME_SHORT/=g' {} +
+    find .conan/ -name .conan_link -exec perl -pi -e 's|\Q$ENV{CONAN_USER_HOME_SHORT}\E|CONAN_USER_HOME_SHORT/|g' {} +
     
     git status
     
