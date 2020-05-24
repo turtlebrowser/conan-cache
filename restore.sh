@@ -23,7 +23,7 @@ if [ $(git tag --list "$INPUT_KEY") ]; then
     # If it does - check out explicit and set cache_hit to 1
     git checkout ${INPUT_KEY}
     echo "Conan Cache: replace CONAN_USER_HOME_SHORT with ${CONAN_USER_HOME_SHORT}"
-    find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}/=g' {} +
+    find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
     echo "::set-env name=cache-hit::1"
 else
     # If it doesn't check if fallback exits
@@ -39,7 +39,7 @@ else
         git pull
         git lfs pull
         echo "Conan Cache: replace CONAN_USER_HOME_SHORT with ${CONAN_USER_HOME_SHORT}"
-        find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}/=g' {} +
+        find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
         echo "::set-env name=cache-hit::2"
     else
         # If it doesn't - create the branch and set cache_hit to 0
