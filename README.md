@@ -102,6 +102,7 @@ This is the structure that is expected by conan-cache of an empty cache
 
 ~~~
 git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git
+cd ${CACHE_GITHUB_REPO}
 mkdir .conan && touch .conan/conan-cache.marker
 touch .gitattributes
 mkdir short && touch short/conan-cache.marker
