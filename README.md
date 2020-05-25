@@ -45,12 +45,11 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
 ## Make an empty repo
 ~~~
 git clone git@github.com:turtlebrowser/conan-cache.git
-mkdir .conan
-touch .conan/conan-cache.marker
-git add .conan/conan-cache.marker
+mkdir .conan && touch .conan/conan-cache.marker && git add .conan/conan-cache.marker
+touch .gitattributes && git add .gitattributes && git commit -m "Add .gitattributes" && git push
+mkdir short && touch short/conan-cache.marker
 git commit -m "Setup cache"
 git push
-touch .gitattributes && git add .gitattributes && git commit -m "Add .gitattributes" && git push
 ~~~
 
 Add the bot account as collaborator on the repo
