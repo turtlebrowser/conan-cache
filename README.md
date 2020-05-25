@@ -82,11 +82,11 @@ find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{C
 ~~~
 export CONAN_USER_HOME="c:/release/"
 export CONAN_USER_HOME_SHORT="c:/release/short/"
-git clone git@github.com:turtlebrowser/conan-cache-turtlebrowser.git $CONAN_USER_HOME
+git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git $CONAN_USER_HOME
 cd $CONAN_USER_HOME
-git checkout -b host-Windows-target-Windows-master
-git push -u origin host-Windows-target-Windows-master
-cd <path to checkout>/turtlebrowser
+git checkout -b <branch>
+git push -u origin <branch>
+cd <path to project checkout>
 git pull
 rm -rf build
 mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
@@ -107,14 +107,14 @@ git push
 ~~~
 export CONAN_USER_HOME="c:/release/"
 export CONAN_USER_HOME_SHORT="c:/release/short/"
-git clone git@github.com:turtlebrowser/conan-cache-turtlebrowser.git $CONAN_USER_HOME
+git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git $CONAN_USER_HOME
 cd $CONAN_USER_HOME
-git checkout host-Windows-target-Windows-master
+git checkout <branch>
 git clean -df
 git pull
 git lfs pull
 find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
-cd <path to checkout>/turtlebrowser
+cd <path to project checkout>
 git pull
 rm -rf build
 mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
