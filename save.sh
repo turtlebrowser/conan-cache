@@ -20,13 +20,13 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     git config user.name "${INPUT_BOT_NAME}"
     
     echo "Conan Cache: Find all files bigger than 100MB"
-    find .conan short -type f -size +100000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+    find .conan short -type f -size +100M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 
     echo "Conan Cache: Find all files bigger than 50MB"
-    find .conan short -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+    find .conan short -type f -size +50M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
     
     echo "Conan Cache: Auto LFS track all files bigger than $INPUT_LFS_LIMIT MB"
-    find .conan short -type f -size +50000k -execdir git lfs track {} \;
+    find .conan short -type f -size +${INPUT_LFS_LIMIT}M -execdir git lfs track {} \;
     
     #echo "Conan Cache: HARDCODED LFS tracking of libQt5WebEngineCore"
     #git lfs track 'libQt5WebEngineCore.so.*'
