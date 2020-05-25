@@ -4,6 +4,8 @@ The action uses a GitHub repository as a cache for a .conan directory to speed u
 
 **When to use**: The conan-cache action was created to make CI builds possible for projects where building conan modules takes a lot of time, "a lot of time" is here measured in hours. The cache is also useful for local builds. If you have an artifactory then that is probably a better solution than this. Upload a prebuilt artifact there. (That might be added as an option to conan-cache in the future).
 
+**Works on**: Linux, Windows and MacOS 
+
 ## Inputs
 
 ### `bot_name`
