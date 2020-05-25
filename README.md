@@ -1,5 +1,7 @@
 # Conan Cache GitHub Action
 
+The action uses a GitHub repository as a cache for a .conan directory to speed up very slow builds. It was made specifically to offset the cost of a conan-qt build with QtWebEngine turned on. The cache can be populated in the GitHub action pipeline, or offline on a computer and then pushed to the repo. This second workflow is to help with builds that are too slow for GitHub Actions, where a step cannot take longer than 6 hours, and has limited disk space. The setup requires the creation of a bot account and a repo to hold the cache.
+
 ## Inputs
 
 ### `bot_name`
@@ -49,7 +51,7 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
 This is the structure that is expected by conan-cache
 
 ~~~
-git clone git@github.com:turtlebrowser/conan-cache.git
+git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git
 mkdir .conan && touch .conan/conan-cache.marker
 touch .gitattributes
 mkdir short && touch short/conan-cache.marker
@@ -62,9 +64,11 @@ git push
 
 Might be needed to pull locally
 ~~~
-git clone git@github.com:turtlebrowser/conan-cache-turtlebrowser.git
-cd conan-cache-turtlebrowser
-git checkout host-Linux-target-Linux-master
+git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git
+cd ${CACHE_GITHUB_REPO}
+git checkout <branch>
 git lfs pull
 export CONAN_USER_HOME=`pwd`
+export CONAN_USER_HOME_SHORT=${CONAN_USER_HOME}/short
+find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
 ~~~
