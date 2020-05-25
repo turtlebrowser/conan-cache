@@ -2,6 +2,8 @@
 
 The action uses a GitHub repository as a cache for a .conan directory to speed up very slow builds. It was made specifically to offset the cost of a conan-qt build with QtWebEngine turned on. The cache can be populated in the GitHub action pipeline, or offline on a computer and then pushed to the repo. This second workflow is to help with builds that are too slow for GitHub Actions, where a step cannot take longer than 6 hours, and has limited disk space. The setup requires the creation of a bot account and a repo to hold the cache.
 
+**When to use**: The conan-cache action was created to make CI builds possible for projects where building conan modules takes a lot of time, "a lot of time" is here measured in hours. The cache is also useful for local builds. If you have an artifactory then that is probably a better solution than this. Upload a prebuilt artifact there. (That might be added as an option to conan-cache in the future).
+
 ## Inputs
 
 ### `bot_name`
