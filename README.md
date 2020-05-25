@@ -140,6 +140,7 @@ conan remove -f "*" --src
 conan remove -f "*" --system-reqs
 cd $CONAN_USER_HOME
 find .conan/ -name .conan_link -exec perl -pi -e 's=$ENV{CONAN_USER_HOME_SHORT}=CONAN_USER_HOME_SHORT/=g' {} +
+export LFS_LIMIT=50
 find .conan short -type f -size +${LFS_LIMIT}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 find .conan short -type f -size +${LFS_LIMIT}M -execdir git lfs track {} \;
 git add -A
