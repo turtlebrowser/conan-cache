@@ -130,8 +130,8 @@ find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{C
 ### Prep: Creating the platform branch (first time)
 
 ~~~
-export CONAN_USER_HOME="c:/release/"
-export CONAN_USER_HOME_SHORT="c:/release/short/"
+export CONAN_USER_HOME="c:/release"
+export CONAN_USER_HOME_SHORT=${CONAN_USER_HOME}/short
 git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git $CONAN_USER_HOME
 cd $CONAN_USER_HOME
 git checkout -b <branch>
@@ -141,8 +141,8 @@ git push -u origin <branch>
 ### Prep: Using the platform branch (after the first time)
 
 ~~~
-export CONAN_USER_HOME="c:/release/"
-export CONAN_USER_HOME_SHORT="c:/release/short/"
+export CONAN_USER_HOME="c:/release"
+export CONAN_USER_HOME_SHORT=${CONAN_USER_HOME}/short
 git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git $CONAN_USER_HOME
 cd $CONAN_USER_HOME
 git checkout <branch>
