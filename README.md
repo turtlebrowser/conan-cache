@@ -59,6 +59,15 @@ Action setup
           lfs_limit: 60
 ~~~~
 
+After conan has filled the cache, clean it up
+~~~~
+    - name: Clean up Conan
+      run: |
+        conan remove -f "*" --builds
+        conan remove -f "*" --src
+        conan remove -f "*" --system-reqs
+~~~~
+
 Use the _cache-hit_ output
 ~~~~
       - name: On cache miss add bincrafters remote
