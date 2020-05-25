@@ -8,6 +8,8 @@ The setup process for the action requires the creation of a bot account and a Gi
 
 **Works on**: Linux, Windows and MacOS 
 
+This action was inspired by the builtin GitHub cache action, which might be more than adequate for your needs. See here for how you can use it for conan modules.
+
 ## Inputs
 
 ### `bot_name`
@@ -146,4 +148,19 @@ find .conan short -type f -size +${LFS_LIMIT}M -execdir git lfs track {} \;
 git add -A
 git commit -m "Local build"
 git push
+~~~
+
+### Example using the builtin GitHub cache instead for .conan
+
+~~~
+    - name: GitHub Cache Conan modules
+      if: matrix.os == 'windows-latest'
+      id: cache-conan
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-conan-modules
+      with:
+        path: ${{ env.CONAN_USER_HOME }}
+        key: ${{ runner.os }}-builder-${{ env.cache-name }}-${{ hashFiles('conanfile.py') }}
+        restore-keys: ${{ runner.os }}-builder-${{ env.cache-name }}-
 ~~~
