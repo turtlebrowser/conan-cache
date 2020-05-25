@@ -22,7 +22,7 @@ jobs:
         with:
           bot_name: ${{ secrets.BOT_NAME }}
           bot_token: ${{ secrets.BOT_TOKEN }}
-          cache_name: turtlebrowser/conan-cache-turtlebrowser2
+          cache_name: turtlebrowser/conan-cache-turtlebrowser
           key: test_${{ runner.os }}
           target_os: Test
           lfs_limit: 60
