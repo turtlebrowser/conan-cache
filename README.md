@@ -178,7 +178,7 @@ git commit -m "Local build"
 git push
 ~~~
 
-### Example using the builtin GitHub Cache Action instead for .conan
+## Example using the builtin GitHub Cache Action instead for .conan
 
 Assumed environment
 ~~~~
