@@ -1,5 +1,7 @@
 # Conan Cache GitHub Action
 
+![CI](https://github.com/turtlebrowser/conan-cache/workflows/CI/badge.svg?branch=master)
+
 The action uses a GitHub repository as a cache for a .conan directory to speed up very slow builds. It was made specifically to offset the cost of a conan-qt build with QtWebEngine turned on. The cache can be populated in the GitHub action pipeline, or offline on a computer and then pushed to the repo. This second workflow is to help with builds that are too slow for GitHub Actions, where a step cannot take longer than 6 hours, and has limited disk space. See below for how to do an offline filling of the cache. 
 
 The setup process for the action requires the creation of a bot account and a GitHub repo to hold the cache. See below for details.
