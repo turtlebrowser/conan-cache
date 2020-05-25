@@ -33,7 +33,7 @@ This action was inspired by the builtin [GitHub Cache Action](https://help.githu
 ## Outputs
 
 ### `cache-hit`
-Cache a hit on a key: no hit (0), explicit key (1), fallback key (2).
+The state of the cache hit: no hit (0), hit on explicit key (1), hit on fallback key (2).
 (**An explicit key is represented in the repo as a tag, a fallback key is represented as a branch**)
 
 ## Example usage
