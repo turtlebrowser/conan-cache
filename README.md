@@ -58,11 +58,16 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2).
 
 ## Environment in manual steps below
 
-### `CACHE_GITHUB` : GitHub account that has the cache repo
-### `CACHE_GITHUB_REPO` : Name of the cache repo
-### `CONAN_USER_HOME` : Conan variable, sets the directory in which .conan will be found
-### `CONAN_USER_HOME_SHORT` : Conan variable, sets the directory which with be uses for Conan short paths (Windows only)
-### `LFS_LIMIT` : The file size at which a file should be added to Git LFS rather than to git. GitHub sets a max file size of 100MB.
+### `CACHE_GITHUB`
+GitHub account that has the cache repo
+### `CACHE_GITHUB_REPO`
+Name of the cache repo
+### `CONAN_USER_HOME`
+Conan variable, sets the directory in which .conan will be found
+### `CONAN_USER_HOME_SHORT`
+Conan variable, sets the directory which with be uses for Conan short paths (Windows only)
+### `LFS_LIMIT`
+The file size at which a file should be added to Git LFS rather than to git. GitHub sets a max file size of 100MB.
 
 ## Make an empty repo
 
