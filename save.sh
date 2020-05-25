@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+INPUT_LFS_LIMIT=${INPUT_LFS_LIMIT:-50}
+
 cd $CONAN_USER_HOME
 
 #FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
@@ -23,7 +25,7 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Find all files bigger than 50MB"
     find .conan short -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
     
-    echo "Conan Cache: Auto LFS track all files bigger than 50MB"
+    echo "Conan Cache: Auto LFS track all files bigger than $INPUT_LFS_LIMIT MB"
     find .conan short -type f -size +50000k -execdir git lfs track {} \;
     
     #echo "Conan Cache: HARDCODED LFS tracking of libQt5WebEngineCore"
