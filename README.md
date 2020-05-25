@@ -59,6 +59,13 @@ Action setup
           lfs_limit: 60
 ~~~~
 
+Use the _cache-hit_ output
+~~~~
+      - name: On cache miss add bincrafters remote
+        if: ${{ env.cache-hit == 0 }}
+        run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+~~~~
+
 ## Setup
 * Create a GitHub bot account that will be used to manage the conan cache
 * Create a GitHub repo for your conan cache
