@@ -166,10 +166,18 @@ git commit -m "Local build"
 git push
 ~~~
 
-### Example using the builtin GitHub cache instead for .conan
+### Example using the builtin GitHub Cache Action instead for .conan
 
+Assumed environment
+~~~~
+    env:
+      CONAN_USER_HOME: "${{ github.workspace }}/release/"
+      CONAN_USER_HOME_SHORT: "${{ github.workspace }}/release/short"
+~~~~
+
+Action setup
 ~~~
-    - name: GitHub Cache Conan modules
+    - name: Using the builtin GitHub Cache Action for .conan
       if: matrix.os == 'windows-latest'
       id: cache-conan
       uses: actions/cache@v1
