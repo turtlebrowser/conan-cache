@@ -33,6 +33,7 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
           cache_name: ${{ env.CACHE_GITHUB }}/${{ env.CACHE_GITHUB_REPO }}
           key: host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
           target_os: ${{ runner.os }}
+          lfs_limit: 60
 ~~~~
 
 ## Setup
