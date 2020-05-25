@@ -106,6 +106,8 @@ The final step is to insert the local CONAN_USER_HOME_SHORT path instead of the 
 
 ### Populate: Build the target project with CONAN_USER_HOME and CONAN_USER_HOME_SHORT set
 
+This step assumes it is being run in the same shell as one of the prep steps.
+
 Build the target project, this will fill the cache. Then remove traces of the build process. Replace hardcoded paths with the placeholder _CONAN_USER_HOME_SHORT_. Then add any files exeeding the LFS limit for the project to _git lfs_. Add/remove everything as is with _git add -A_, commit and push. Start a build on GitHub and the branch will be tested and tagged automatically.
 
 ~~~
