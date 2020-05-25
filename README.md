@@ -77,7 +77,7 @@ find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{C
 
 ## Populating the cache locally
 
-### First time
+### Prep: Creating the platform branch (first time)
 
 ~~~
 export CONAN_USER_HOME="c:/release/"
@@ -86,23 +86,9 @@ git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git $CONAN_USER_HO
 cd $CONAN_USER_HOME
 git checkout -b <branch>
 git push -u origin <branch>
-cd <path to project checkout>
-git pull
-rm -rf build
-mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
-conan remove -f "*" --builds
-conan remove -f "*" --src
-conan remove -f "*" --system-reqs
-cd $CONAN_USER_HOME
-find .conan/ -name .conan_link -exec perl -pi -e 's=$ENV{CONAN_USER_HOME_SHORT}=CONAN_USER_HOME_SHORT/=g' {} +
-find .conan/ -type f -size +50M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
-#git lfs track 'Qt5WebEngineCore.dll'
-git add -A
-git commit -m "Local build"
-git push
 ~~~
 
-### After the first time
+### Prep: Using the platform branch (after the first time)
 
 ~~~
 export CONAN_USER_HOME="c:/release/"
@@ -114,6 +100,15 @@ git clean -df
 git pull
 git lfs pull
 find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
+~~~
+
+The final step is to insert the local CONAN_USER_HOME_SHORT path instead of the placeholder
+
+### Populate: Build the target project with CONAN_USER_HOME and CONAN_USER_HOME_SHORT set
+
+Build the target project, this will fill the cache. Then remove traces of the build process. Replace hardcoded paths with the placeholder _CONAN_USER_HOME_SHORT_. Then add any files exeeding the LFS limit for the project to _git lfs_. Add/remove everything as is with _git add -A_, commit and push. Start a build on GitHub and the branch will be tested and tagged automatically.
+
+~~~
 cd <path to project checkout>
 git pull
 rm -rf build
@@ -123,8 +118,8 @@ conan remove -f "*" --src
 conan remove -f "*" --system-reqs
 cd $CONAN_USER_HOME
 find .conan/ -name .conan_link -exec perl -pi -e 's=$ENV{CONAN_USER_HOME_SHORT}=CONAN_USER_HOME_SHORT/=g' {} +
-find .conan/ -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
-#git lfs track 'Qt5WebEngineCore.dll'
+find .conan short -type f -size +${LFS_LIMIT}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+find .conan short -type f -size +${LFS_LIMIT}M -execdir git lfs track {} \;
 git add -A
 git commit -m "Local build"
 git push
