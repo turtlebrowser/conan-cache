@@ -37,6 +37,15 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2).
 (**An explicit key is represented in the repo as a tag, a fallback key is represented as a branch**)
 
 ## Example usage
+
+Assumed environment
+~~~~
+    env:
+      CONAN_USER_HOME: "${{ github.workspace }}/release/"
+      CONAN_USER_HOME_SHORT: "${{ github.workspace }}/release/short"
+~~~~
+
+Action setup
 ~~~~
     - name: Cache Conan modules
       id: cache-conan
