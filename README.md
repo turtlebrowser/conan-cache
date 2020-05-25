@@ -43,6 +43,9 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
 * Add the token as a secret to your workflow [https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets]
 
 ## Make an empty repo
+
+This is the structure that is expected by conan-cache
+
 ~~~
 git clone git@github.com:turtlebrowser/conan-cache.git
 mkdir .conan && touch .conan/conan-cache.marker
