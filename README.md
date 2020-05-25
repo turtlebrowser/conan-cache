@@ -19,6 +19,9 @@ The action uses a GitHub repository as a cache for a .conan directory to speed u
 ### `target_os`
 **Optional** Target OS if different from host OS
 
+### `lfs_limit`
+**Optional** In number of MB. Files with a size larger than lfs_limit are added to Git Large File Storage (LFS), defaults to 50MB, GitHub supports max 100MB
+
 ## Outputs
 
 ### `cache-hit`
