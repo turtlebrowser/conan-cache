@@ -23,7 +23,7 @@ jobs:
           bot_name: ${{ secrets.BOT_NAME }}
           bot_token: ${{ secrets.BOT_TOKEN }}
           cache_name: turtlebrowser/conan-cache-turtlebrowser
-          key: test_${{ runner.os }}3
+          key: test_${{ runner.os }}
           target_os: Test
 
       - name: Did we hit the cache?
