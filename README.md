@@ -37,12 +37,12 @@ Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)
 ~~~~
 
 ## Setup
-* Create a bot for authenication [https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users]
-* Create a repo for your OS's conan cache
-* Give your machine-user rights on your cache repo
-* Create a personal access token for your machine-user [https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line]
-* Add the token as a secret to your workflow [https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets]
-* Make sure the bot has write access to your cache repo
+* Create a GitHub bot account that will be used to manage the conan cache
+* Create a GitHub repo for your conan cache
+* Add your bot as a collaborator on the cache with write access
+* Create a personal access token for your bot [https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line]
+* Add the personal access token as a secret to your repos workflow [https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets]
+* Follow the instructions below to set up an empty cache
 
 ## Make an empty repo
 
@@ -57,8 +57,6 @@ git add -A
 git commit -m "Setup cache"
 git push
 ~~~
-
-Add the bot account as collaborator on the repo
 
 ## How to use locally
 
