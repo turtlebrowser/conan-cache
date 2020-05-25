@@ -8,7 +8,7 @@ The setup process for the action requires the creation of a bot account and a Gi
 
 **Works on**: Linux, Windows and MacOS 
 
-This action was inspired by the builtin GitHub cache action, which might be more than adequate for your needs. See here for how you can use it for conan modules.
+This action was inspired by the builtin GitHub cache action, which might be more than adequate for your needs. See [here](https://github.com/turtlebrowser/conan-cache/blob/master/README.md#example-using-the-builtin-github-cache-instead-for-conan) for how you can use it for conan modules.
 
 ## Inputs
 
