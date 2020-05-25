@@ -17,6 +17,9 @@ inputs:
   target_os:
     description: 'Target OS if different from host OS'
     required: false
+  lfs_limit:
+    description: 'In number of MB. Files with a size larger than lfs_limit are added to Git Large File Storage (LFS), defaults to 50MB, GitHub supports max 100MB'
+    required: false
 outputs:
   cache-hit:
     description: 'Cache a hit on a key: no hit (0), explicit key (1), fallback key (2)'
