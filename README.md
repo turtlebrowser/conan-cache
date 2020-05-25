@@ -31,7 +31,8 @@ The setup process for the action requires the creation of a bot account and a Gi
 ## Outputs
 
 ### `cache-hit`
-Cache a hit on a key: no hit (0), explicit key (1), fallback key (2) **An explicit key is represented in the repo as a tag, a fallback key is represented as a branch**
+Cache a hit on a key: no hit (0), explicit key (1), fallback key (2) 
+**An explicit key is represented in the repo as a tag, a fallback key is represented as a branch**
 
 ## Example usage
 ~~~~
