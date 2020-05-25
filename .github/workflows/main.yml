@@ -25,6 +25,7 @@ jobs:
           cache_name: turtlebrowser/conan-cache-turtlebrowser
           key: test_${{ runner.os }}
           target_os: Test
+          lfs_limit: 60
 
       - name: Did we hit the cache?
         run: echo "cache-hit was ${{ env.cache-hit }}"
