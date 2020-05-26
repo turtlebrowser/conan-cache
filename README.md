@@ -145,8 +145,9 @@ export CONAN_USER_HOME="c:/release"
 export CONAN_USER_HOME_SHORT=${CONAN_USER_HOME}/short
 git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git $CONAN_USER_HOME
 cd $CONAN_USER_HOME
-git checkout <branch>
 git clean -df
+git checkout .
+git checkout <branch>
 git pull
 git lfs pull
 find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
