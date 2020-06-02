@@ -77,6 +77,35 @@ Use the _cache-hit_ output
         run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 ~~~~
 
+## Using GitHub Cache Action as a pre-cache (since git lfs costs money)
+
+A trick that can be used is to use the [GitHub Cache Action](https://help.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows) as a first level cache. It has limited space and often fails to fetch the cache for unknown reasons, but many times it will suffice and you can save on git lfs bandwith costs. Here is an example of how that could look. Note that the example doesn't use _restore-keys_, that is because the GitHub Cache Action's _cache-hit_ is a boolean that will only signal if the _key_ was hit (this is **not** how it works in Conan Cache). Also, if the _key_ doesn't hit, then you most likely have a change in your conanfile.py and should fetch from Conan Cache anyway.
+
+~~~~
+    # Check if GitHub Cache has it, because that's free
+    - name: Using the builtin GitHub Cache Action for .conan
+      id: github-cache-conan
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-conan-modules
+      with:
+        path: ${{ env.CONAN_USER_HOME }}
+        key: host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
+        
+    # If GitHub Cache doesn't have it, get from Conan Cache (has git lfs cost)
+    - name: Cache Conan modules
+      if: steps.github-cache-conan.outputs.cache-hit != 'true'
+      id: cache-conan
+      uses: turtlebrowser/conan-cache@master
+      with:
+          bot_name: ${{ secrets.BOT_NAME }}
+          bot_token: ${{ secrets.BOT_TOKEN }}
+          cache_name: ${{ env.CACHE_GITHUB }}/${{ env.CACHE_GITHUB_REPO }}
+          key: host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
+          target_os: ${{ runner.os }}
+          lfs_limit: 60
+~~~~
+
 ## Setup
 * Create a GitHub bot account that will be used to manage the conan cache
 * Create a GitHub repo for your conan cache
