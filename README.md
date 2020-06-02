@@ -12,6 +12,8 @@ The setup process for the action requires the creation of a bot account and a Gi
 
 This action was inspired by the builtin [GitHub Cache Action](https://help.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows), which might be more than adequate for your needs. See [here](https://github.com/turtlebrowser/conan-cache/blob/master/README.md#example-using-the-builtin-github-cache-instead-for-conan) for how you can use it for conan modules. The builtin GitHub Cache Action has some [limitations](https://help.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows#usage-limits-and-eviction-policy), however, and tends to have a lot of intermittant failures to retrieve the cache, which can be unacceptable when building without takes a long time.
 
+See also [this trick](https://github.com/turtlebrowser/conan-cache/blob/master/README.md#using-github-cache-action-as-a-pre-cache-since-git-lfs-costs-money) using a combination of GitHub Cache Action and Conan Cache.
+
 ## Inputs
 
 ### `bot_name`
