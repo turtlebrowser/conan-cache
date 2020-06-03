@@ -83,6 +83,8 @@ Use the _cache-hit_ output
 
 A trick that can be used is to use the [GitHub Cache Action](https://help.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows) as a first level cache. It has limited space and often fails to fetch the cache for unknown reasons, but many times it will suffice and you can save on git lfs bandwith costs. Here is an example of how that could look. Note that the example doesn't use _restore-keys_, that is because the GitHub Cache Action's _cache-hit_ is a boolean that will only signal if the _key_ was hit (this is **not** how it works in Conan Cache). Also, if the _key_ doesn't hit, then you most likely have a change in your conanfile.py and should fetch from Conan Cache anyway.
 
+Note: Make sure it has been added to the Conan Cache properly using this action first, otherwise the short paths will be wrong on Windows. They are fixed in save.sh.
+
 ~~~~
     # Check if GitHub Cache has it, because that's free
     - name: Using the builtin GitHub Cache Action for .conan
