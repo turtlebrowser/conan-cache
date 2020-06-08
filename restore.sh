@@ -21,7 +21,7 @@ git config --global core.longpaths true
 echo "Conan Cache: Trying explicit key $INPUT_KEY"
 if [ $(git tag --list "$INPUT_KEY") ]; then
     # If it does - check out explicit and set cache_hit to 1
-    git checkout ${INPUT_KEY} || exit "$?"
+    git checkout ${INPUT_KEY} || exit 1
     echo "Conan Cache: replace CONAN_USER_HOME_SHORT with ${CONAN_USER_HOME_SHORT}"
     find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
     echo "::set-env name=cache-hit::1"
@@ -35,17 +35,17 @@ else
     if [ "$fallback_exists" ]; then
         # If it does - check out fallback and set cache_hit to 2
         echo "Conan Cache: Check out fallback key $FALLBACK_KEY"
-        git checkout ${FALLBACK_KEY} || exit "$?"
-        git pull
-        git lfs pull
+        git checkout ${FALLBACK_KEY} || exit 1
+        git pull || exit 1
+        git lfs pull || exit 1
         echo "Conan Cache: replace CONAN_USER_HOME_SHORT with ${CONAN_USER_HOME_SHORT}"
         find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
         echo "::set-env name=cache-hit::2"
     else
         # If it doesn't - create the branch and set cache_hit to 0
         echo "Conan Cache: Creating fallback key $FALLBACK_KEY"
-        git checkout -b ${FALLBACK_KEY}
-        git push -u origin ${FALLBACK_KEY}
+        git checkout -b ${FALLBACK_KEY} || exit 1
+        git push -u origin ${FALLBACK_KEY} || exit 1
         echo "::set-env name=cache-hit::0"
     fi
 fi
