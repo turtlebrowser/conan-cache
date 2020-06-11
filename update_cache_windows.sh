@@ -62,7 +62,7 @@ confirm "Clean Conan system-reqs? [y/N]" && conan remove -f "*" --system-reqs
 
 header "Prep for cache upload"
 
-confirm "Fix short paths? [y/N]" && cd ${CONAN_USER_HOME} && find .conan/ -name .conan_link -exec perl -pi -e 's=$ENV{CONAN_USER_HOME_SHORT}=CONAN_USER_HOME_SHORT/=g' {} +
+confirm "Fix short paths? [y/N]" && cd ${CONAN_USER_HOME} && find .conan/ -name .conan_link -exec perl -pi -e 's=$ENV{CONAN_USER_HOME_SHORT}=CONAN_USER_HOME_SHORT=g' {} +
 
 confirm "List files over ${LFS_LIMIT}M? [y/N]" && cd ${CONAN_USER_HOME} && find .conan short -type f -size +${LFS_LIMIT}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 
