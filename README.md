@@ -140,6 +140,19 @@ git clone git@github.com:${CACHE_GITHUB}/${CACHE_GITHUB_REPO}.git
 cd ${CACHE_GITHUB_REPO}
 mkdir .conan && touch .conan/conan-cache.marker
 touch .gitattributes
+~~~
+
+Fill the .gitattributes with this contents (especially important for Windows)
+~~~
+$ cat .gitattributes
+*.py text eol=lf
+*.yml text eol=lf
+*.diff text eol=lf
+*.conf text eol=lf
+*.md text eol=lf
+~~~
+
+~~~
 mkdir short && touch short/conan-cache.marker
 git add -A
 git commit -m "Setup cache"
