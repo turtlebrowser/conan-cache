@@ -64,6 +64,8 @@ header "Prep for cache upload"
 
 confirm "Fix short paths? [y/N]" && cd ${CONAN_USER_HOME} && find .conan/ -name .conan_link -exec perl -pi -e 's=$ENV{CONAN_USER_HOME_SHORT}=CONAN_USER_HOME_SHORT=g' {} +
 
+confirm "Clean up .conan_link.bak? [y/N]" && cd ${CONAN_USER_HOME} && find -name .conan_link.bak -execdir rm {} \;
+
 confirm "List files over ${LFS_LIMIT}M? [y/N]" && cd ${CONAN_USER_HOME} && find .conan short -type f -size +${LFS_LIMIT}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 
 confirm "LFS track files over ${LFS_LIMIT}M? [y/N]" && cd ${CONAN_USER_HOME} && find .conan short -type f -size +${LFS_LIMIT}M -execdir git lfs track {} \;
