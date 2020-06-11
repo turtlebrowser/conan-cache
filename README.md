@@ -211,6 +211,8 @@ Build the target project, this will fill the cache. Then remove traces of the bu
 cd <path to project checkout>
 git pull
 rm -rf build
+# Make a cmake switch to turn on UPDATE build obsolete:
+# mkdir build && cd build && cmake -DUPDATE_CONAN=ON -DCMAKE_BUILD_TYPE=Release ..
 mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
 conan remove -f "*" --builds
 conan remove -f "*" --src
