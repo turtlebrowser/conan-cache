@@ -145,11 +145,7 @@ touch .gitattributes
 Fill the .gitattributes with this contents (especially important for Windows)
 ~~~
 $ cat .gitattributes
-*.py text eol=lf
-*.yml text eol=lf
-*.diff text eol=lf
-*.conf text eol=lf
-*.md text eol=lf
+* -text
 ~~~
 
 ~~~
