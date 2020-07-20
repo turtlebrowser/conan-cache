@@ -40,7 +40,7 @@ confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git ch
 
 confirm "Update cache? [y/N]" && cd ${CONAN_USER_HOME} && git pull && git lfs pull
 
-confirm "DELETE the whole cache? [y/N]" && cd ${CONAN_USER_HOME} && conan remove -f "*"
+confirm "DELETE the whole cache? [y/N]" && cd ${CONAN_USER_HOME} && conan remove -f "*" && rm -rf short/* && touch short/conan-cache.marker
 
 confirm "Prepare short paths [y/N]" && cd ${CONAN_USER_HOME} && find .conan/ -name .conan_link -exec perl -pi -e 's=CONAN_USER_HOME_SHORT=$ENV{CONAN_USER_HOME_SHORT}=g' {} +
 
