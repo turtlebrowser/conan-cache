@@ -33,6 +33,7 @@ export CONAN_USER_HOME_SHORT=${CONAN_USER_HOME}/short
 [ ! -d ${CONAN_USER_HOME_SHORT} ] && { echo "${CONAN_USER_HOME_SHORT} DOES NOT EXIST"; exit 1; }
 
 export LFS_LIMIT=50
+export CONAN_SYSREQUIRES_MODE=enabled
 
 header "Prepare Cache for update"
 
