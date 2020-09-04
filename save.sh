@@ -28,11 +28,6 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Auto LFS track all files bigger than $INPUT_LFS_LIMIT MB"
     find .conan short -type f -size +${INPUT_LFS_LIMIT}M -execdir git lfs track {} \;
     
-    #echo "Conan Cache: HARDCODED LFS tracking of libQt5WebEngineCore"
-    #git lfs track 'libQt5WebEngineCore.so.*'
-    #git lfs track 'libQt5WebEngineCore.*.dylib'
-    #git lfs track 'Qt5WebEngineCore.dll'
-    
     echo "Conan Cache: Add everything"
     git add -A
     
