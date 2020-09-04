@@ -13,6 +13,11 @@ if [ $(git symbolic-ref --short -q HEAD) ]; then
     pip3 install wheel setuptools
     pip3 install conan --upgrade
     
+    echo "Clean Conan"
+    conan remove -f "*" --builds
+    conan remove -f "*" --src
+    conan remove -f "*" --system-reqs
+    
     echo "Conan Cache: replace ${CONAN_USER_HOME_SHORT} with CONAN_USER_HOME_SHORT"
     find .conan/ -name .conan_link -exec perl -pi -e 's|\Q$ENV{CONAN_USER_HOME_SHORT}\E|CONAN_USER_HOME_SHORT|g' {} +
     find .conan -name .conan_link.bak -exec rm {} +
