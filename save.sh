@@ -9,6 +9,10 @@ echo "Check if on branch"
 if [ $(git symbolic-ref --short -q HEAD) ]; then
     echo "Conan Cache: Currently on fallback key"
     
+    echo "Install Conan"
+    pip3 install wheel setuptools
+    pip3 install conan --upgrade
+    
     echo "Conan Cache: replace ${CONAN_USER_HOME_SHORT} with CONAN_USER_HOME_SHORT"
     find .conan/ -name .conan_link -exec perl -pi -e 's|\Q$ENV{CONAN_USER_HOME_SHORT}\E|CONAN_USER_HOME_SHORT|g' {} +
     find .conan -name .conan_link.bak -exec rm {} +
