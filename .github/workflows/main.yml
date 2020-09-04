@@ -25,7 +25,7 @@ jobs:
           bot_name: ${{ secrets.BOT_NAME }}
           bot_token: ${{ secrets.BOT_TOKEN }}
           cache_name: turtlebrowser/conan-cache-turtlebrowser
-          key: test_${{ runner.os }}_1
+          key: test_${{ runner.os }}_2
           target_os: Test
           lfs_limit: 60
 
@@ -50,6 +50,3 @@ jobs:
           echo "${{ github.ref }}"
           echo "${{ github.head_ref }}"
           echo "${{ github.base_ref }}"
-
-      - name: Clean up Conan
-        run: conan remove -f "*" --builds --src --system-reqs
