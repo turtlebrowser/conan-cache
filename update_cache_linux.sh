@@ -37,7 +37,7 @@ export CONAN_SYSREQUIRES_MODE=enabled
 
 header "Prepare Cache for update"
 
-confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git checkout . && git checkout host-Linux-target-Linux-ubuntu-latest-master
+confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git checkout . && git checkout host-Linux-target-Linux-ubuntu-18.04-master
 
 confirm "Update cache? [y/N]" && cd ${CONAN_USER_HOME} && git pull && git lfs pull
 
