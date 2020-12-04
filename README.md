@@ -75,7 +75,7 @@ After conan has filled the cache, clean it up
 Use the _cache-hit_ output
 ~~~~
       - name: On cache miss add bincrafters remote
-        if: ${{ env.cache-hit == 0 }}
+        if: ${{ steps.cache-conan.outputs.cache-hit == 0 }}
         run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 ~~~~
 
