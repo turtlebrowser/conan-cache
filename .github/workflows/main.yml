@@ -30,7 +30,7 @@ jobs:
           lfs_limit: 60
 
       - name: Did we hit the cache?
-        run: echo "cache-hit was ${{ env.cache-hit }}"
+        run: echo "cache-hit was ${{ steps.cache-conan.outputs.cache-hit }}"
 
       - name: Get Conan
         run: |
@@ -42,7 +42,7 @@ jobs:
         run: echo "/home/runner/.local/bin" >> $GITHUB_PATH
 
       - name: Put something in the .conan
-        if: ${{ env.cache-hit == 0 }}
+        if: ${{ steps.cache-conan.outputs.cache-hit == 0 }}
         run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 
       - name: Print branch
