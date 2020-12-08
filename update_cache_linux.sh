@@ -1,6 +1,10 @@
 #!/bin/bash
 
-[ $# -eq 0 ] && { echo "Usage: $0 <full path to APPLICATION checkout>"; exit 1; }
+UBUNTU_VERSION="18.04"
+
+[ $# -eq 0 ] && { echo "Usage: $0 <full path to APPLICATION checkout> <version>"; exit 1; }
+
+[ $# -eq 2 ] && UBUNTU_VERSION="$2"
 
 confirm() {
     read -r -p "${1:-Are you sure? [y/N]} " response
@@ -37,7 +41,7 @@ export CONAN_SYSREQUIRES_MODE=enabled
 
 header "Prepare Cache for update"
 
-confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git checkout . && git checkout host-Linux-target-Linux-ubuntu-18.04-master
+confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git checkout . && git checkout host-Linux-target-Linux-ubuntu-${UBUNTU_VERSION}-master
 
 confirm "Update cache? [y/N]" && cd ${CONAN_USER_HOME} && git pull && git lfs pull
 
