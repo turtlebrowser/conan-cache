@@ -36,7 +36,7 @@ export LFS_LIMIT=50
 
 header "Prepare Cache for update"
 
-confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git checkout . && git checkout host-Windows-target-Windows-windows-2019-master
+confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git checkout . && git checkout host-Windows-target-Windows-windows-2019-main
 
 confirm "Update cache? [y/N]" && cd ${CONAN_USER_HOME} && git pull && git lfs pull
 

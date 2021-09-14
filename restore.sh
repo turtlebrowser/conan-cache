@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 INPUT_TARGET_OS=${INPUT_TARGET_OS:-$RUNNER_OS}
-REPO_BRANCH=master
+REPO_BRANCH=main
 
 echo "-- Conan Cache: $GITHUB_EVENT_NAME : Commit by $GITHUB_ACTOR with SHA $GITHUB_SHA on $GITHUB_REF"
 echo "-- Conan Cache: Using cache $INPUT_CACHE_NAME"
@@ -12,7 +12,7 @@ cd $CONAN_USER_HOME
 
 # Check out cache
 echo "-- Conan Cache: Checking out at CONAN_USER_HOME: $CONAN_USER_HOME"
-git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=master || exit 1
+git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=main || exit 1
 
 echo "-- Conan Cache: Enable long paths"
 git config --global core.longpaths true
