@@ -34,9 +34,9 @@ else
     FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
     echo "-- Conan Cache: Trying fallback key $FALLBACK_KEY"
 
-    fallback_exists="$(git ls-remote origin $FALLBACK_KEY 2>/dev/null)"
+    local fallback_exists=$(git ls-remote origin ${FALLBACK_KEY})
 
-    if [ "$fallback_exists" ]; then
+    if [[ -z ${fallback_exists} ]]; then
         # If it does - check out fallback and set cache_hit to 2
         echo "-- Conan Cache: Check out fallback key $FALLBACK_KEY"
         git checkout ${FALLBACK_KEY} || exit 1
