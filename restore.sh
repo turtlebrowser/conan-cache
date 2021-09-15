@@ -35,6 +35,7 @@ else
     echo "-- Conan Cache: Trying fallback key $FALLBACK_KEY"
 
     fallback_exists=$(git ls-remote --heads origin ${FALLBACK_KEY})
+    echo "-- Conan Cache: git ls-remote returned $fallback_exists"
 
     if [[ -z ${fallback_exists} ]]; then
         # If it does - check out fallback and set cache_hit to 2
