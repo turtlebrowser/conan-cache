@@ -1,5 +1,18 @@
 #!/bin/sh -l
 
+function is_in_remote() {
+    local branch=${1}
+    local existed_in_remote=$(git ls-remote --heads origin ${branch})
+
+    if [[ -z ${existed_in_remote} ]]; then
+        echo "-- Conan Cache: ${branch} is NOT in remote"
+        return 0
+    else
+        echo "-- Conan Cache: ${branch} is in remote"
+        return 1
+    fi
+}
+
 INPUT_TARGET_OS=${INPUT_TARGET_OS:-$RUNNER_OS}
 REPO_BRANCH=main
 
@@ -34,10 +47,9 @@ else
     FALLBACK_KEY="host-${RUNNER_OS}-target-${INPUT_TARGET_OS}-${REPO_BRANCH}"
     echo "-- Conan Cache: Trying fallback key $FALLBACK_KEY"
 
-    fallback_exists=$(git ls-remote --heads origin ${FALLBACK_KEY})
-    echo "-- Conan Cache: git ls-remote returned $fallback_exists"
+    is_in_remote ${FALLBACK_KEY}
 
-    if [[ -z ${fallback_exists} ]]; then
+    if [ $? -eq 0 ]; then
         # If it does - check out fallback and set cache_hit to 2
         echo "-- Conan Cache: Check out fallback key $FALLBACK_KEY"
         git checkout ${FALLBACK_KEY} || exit 1
