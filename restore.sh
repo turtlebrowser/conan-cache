@@ -25,7 +25,7 @@ cd $CONAN_USER_HOME
 
 # Check out cache
 echo "-- Conan Cache: Checking out at CONAN_USER_HOME: $CONAN_USER_HOME"
-git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=main || exit 1
+git clone https://${INPUT_BOT_NAME}:${INPUT_BOT_TOKEN}@github.com/${INPUT_CACHE_NAME}.git ${CONAN_USER_HOME} --branch=main
 
 echo "-- Conan Cache: Enable long paths"
 git config --global core.longpaths true
