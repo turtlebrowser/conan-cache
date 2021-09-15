@@ -24,7 +24,7 @@ jobs:
         with:
           bot_name: ${{ secrets.BOT_NAME }}
           bot_token: ${{ secrets.BOT_TOKEN }}
-          cache_name: turtlebrowser/conan-cache-turtlebrowser
+          cache_name: turtlebrowser/conan-center-index-cache
           key: test_${{ runner.os }}-${{ matrix.os }}-${{ hashFiles('restore.sh') }}-${{ hashFiles('save.sh') }}
           target_os: Test
           lfs_limit: 60
