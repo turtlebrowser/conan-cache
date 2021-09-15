@@ -48,8 +48,12 @@ else
     echo "-- Conan Cache: Trying fallback key $FALLBACK_KEY"
 
     is_in_remote ${FALLBACK_KEY}
+    
+    res=$?
+    
+    echo "-- Conan Cache: is_in_remote returned $res"
 
-    if [ $? -eq 0 ]; then
+    if [ $res -eq 0 ]; then
         # If it does - check out fallback and set cache_hit to 2
         echo "-- Conan Cache: Check out fallback key $FALLBACK_KEY"
         git checkout ${FALLBACK_KEY} || exit 1
