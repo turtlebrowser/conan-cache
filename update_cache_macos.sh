@@ -36,7 +36,7 @@ export LFS_LIMIT=50
 
 header "Prepare Cache for update"
 
-confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git checkout . && git checkout host-macOS-target-macOS-macos-11.0-main
+confirm "Clean cache? [y/N]" && cd ${CONAN_USER_HOME} && git clean -df && git checkout . && git checkout host-macOS-target-macOS-macos-11-main
 
 confirm "Update cache? [y/N]" && cd ${CONAN_USER_HOME} && git pull && git lfs pull
 
